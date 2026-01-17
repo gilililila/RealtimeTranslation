@@ -8,13 +8,13 @@ __pycache__/
 
 # 忽略大模型基座 (这是最重要的！)
 model/asr/whisper-large/
-model/asr/whisper-large-finetune/
 model/mt/nllb-200-distilled-600M/
-model/mt/nllb-200-distilled-600M-finetune/
 model/tts/CosyVoice/
 
 # 如果你的 LoRA 参数很大 (>100MB)，也要忽略
 # 如果 LoRA 参数很小 (比如几十 MB)，可以保留，不用写在这里
+model/asr/whisper-large-finetune/
+model/mt/nllb-200-distilled-600M-finetune/
 
 # 忽略虚拟环境 (如果有)
 venv/

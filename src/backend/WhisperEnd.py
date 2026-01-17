@@ -7,9 +7,22 @@ import gc
 
 import time
 import logging
+from pathlib import Path
 
-logging.basicConfig(filename="../log/performance.log", level=logging.INFO, 
-                    format='%(asctime)s - %(message)s')
+current_file_path = Path(__file__).resolve()
+
+project_root = current_file_path.parent.parent.parent
+
+model_root = project_root / "model"
+log_root = project_root / "log"
+
+log_root.mkdir(parents=True, exist_ok=True) # 确保日志目录存在，不存在则自动创建
+
+logging.basicConfig(
+    filename=str(log_root / "performance.log"), 
+    level=logging.INFO, 
+    format='%(asctime)s - %(message)s'
+    )
 
 from transformers import AutoModelForSeq2SeqLM, AutoTokenizer, AutoProcessor
 from transformers import WhisperConfig, WhisperForConditionalGeneration, WhisperProcessor
@@ -19,18 +32,18 @@ from peft import PeftModel
 device = "cuda" if torch.cuda.is_available() else "cpu"
 
 BASE_MODEL_PATH = {
-    "asr": "../model/asr/whisper-large", 
-    "mt": "../model/mt/nllb-200-distilled-600M"
+    "asr": str(model_root / "asr" / "whisper-large"), 
+    "mt": str(model_root / "mt" / "nllb-200-distilled-600M")
 }
 
 MODEL_PATH = {
     "asr": {
-        "whisper-large": "../model/asr/whisper-large",
-        "whisper-large-finetune": "../model/asr/whisper-large-finetune"
+        "whisper-large": str(model_root / "asr" / "whisper-large"),
+        "whisper-large-finetune": str(model_root / "asr" / "whisper-large-finetune")
         },
     "mt": {
-        "nllb-200-distilled-600M": "../model/mt/nllb-200-distilled-600M",
-        "nllb-200-distilled-600M-finetune": "../model/mt/nllb-200-distilled-600M-finetune"
+        "nllb-200-distilled-600M": str(model_root / "mt" / "nllb-200-distilled-600M"),
+        "nllb-200-distilled-600M-finetune": str(model_root / "mt" / "nllb-200-distilled-600M-finetune")
     }
 }
 

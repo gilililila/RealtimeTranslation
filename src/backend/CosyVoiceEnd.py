@@ -6,7 +6,7 @@ from pathlib import Path
 # 1. 获取当前脚本的绝对路径
 current_file_path = Path(__file__).resolve()
 
-project_root = current_file_path.parent.parent
+project_root = current_file_path.parent.parent.parent
 
 # 3. 定位 CosyVoice 的根目录
 cosyvoice_root = project_root / "model" / "tts" / "CosyVoice"

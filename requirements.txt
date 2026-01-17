@@ -1,0 +1,2 @@
+streamlit==1.51.0
+streamlit_js_eval==1.0.0

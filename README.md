@@ -51,12 +51,12 @@ pip install -r src/frontend/requirements.txt
 
 3. 模型下载
 由于模型文件过于庞大，未包含在仓库中，请从HuggingFace或ModelScope中下载对应基座模型，并严格按照以下结构放置：
-- ASR模型：放置于model/asr/[modelname]
-- MT模型：放置于model/mt/[modelname]
-- TTS模型：放置于model/tts/[modelname]
+   - ASR模型：放置于`model/asr/[modelname]`
+   - MT模型：放置于`model/mt/[modelname]`
+   - TTS模型：放置于`model/tts/[modelname]`
 (如果有LoRA微调权重，请在asr、mt、tts目录下新建文件夹放置)
 
 4. 运行服务
-- 修改backend文件夹下的python文件，将最后一行`uvicorn.run(app, host="0.0.0.0", port=6006)`中host改为127.0.0.1。
-- 修改BASE_MODEL_PATH于MODEL_PATH，将内容修改为你的模型文件夹的命名。
-- 修改frontend/FrontEnd.py文件，将其中API_BASE修改为你的WhiperEnd.py中暴露的API接口；将其中TTS_API修改为你的CosyVoiceEnd.py中暴露的API接口
+   - 修改backend文件夹下的`WhiperEnd.py`和`CosyVoiceEnd.py`文件，将最后一行`uvicorn.run(app, host="0.0.0.0", port=6006)`中host改为`127.0.0.1`。
+   - 修改`BASE_MODEL_PATH`与`MODEL_PATH`，将内容修改为你的模型文件夹的命名。
+   - 修改`frontend/FrontEnd.py`文件，将其中`API_BASE`修改为你的`WhiperEnd.py`中暴露的API接口；将其中`TTS_API`修改为你的`CosyVoiceEnd.py`中暴露的API接口

@@ -27,13 +27,13 @@ RealtimeTranslation/
 ```
 
 # 快速开始
-1. 环境准备
+**1. 环境准备**  
    - OS: Linux(recommended Ubuntu 20.04+)
    - GPU: 现存大于10GB的NVIDIA显卡
    - Python: 3.10
    - CUDA: 12.8+
 
-2. 安装代码
+**2. 安装代码**  
 ```Bash
 # 1.克隆项目
 git clone https://github.com/gilililila/RealtimeTranslation.git
@@ -49,14 +49,14 @@ pip install -r src/backend/requirements.txt
 pip install -r src/frontend/requirements.txt
 ```
 
-3. 模型下载
-由于模型文件过于庞大，未包含在仓库中，请从HuggingFace或ModelScope中下载对应基座模型，并严格按照以下结构放置：
-   - ASR模型：放置于`model/asr/[modelname]`
-   - MT模型：放置于`model/mt/[modelname]`
-   - TTS模型：放置于`model/tts/[modelname]`
-(如果有LoRA微调权重，请在asr、mt、tts目录下新建文件夹放置)
+**3. 模型下载**  
+由于模型文件过于庞大，未包含在仓库中，请从HuggingFace或ModelScope中下载对应基座模型，并严格按照以下结构放置：  
+   - ASR模型：放置于`model/asr/[modelname]`  
+   - MT模型：放置于`model/mt/[modelname]`  
+   - TTS模型：放置于`model/tts/[modelname]`  
+(如果有LoRA微调权重，请在asr、mt、tts目录下新建文件夹放置)  
 
-4. 运行服务
-   - 修改backend文件夹下的`WhiperEnd.py`和`CosyVoiceEnd.py`文件，将最后一行`uvicorn.run(app, host="0.0.0.0", port=6006)`中host改为`127.0.0.1`。
-   - 修改`BASE_MODEL_PATH`与`MODEL_PATH`，将内容修改为你的模型文件夹的命名。
-   - 修改`frontend/FrontEnd.py`文件，将其中`API_BASE`修改为你的`WhiperEnd.py`中暴露的API接口；将其中`TTS_API`修改为你的`CosyVoiceEnd.py`中暴露的API接口
+**4. 运行服务**  
+   - 修改backend文件夹下的`WhiperEnd.py`和`CosyVoiceEnd.py`文件，将最后一行`uvicorn.run(app, host="0.0.0.0", port=6006)`中host改为`127.0.0.1`。  
+   - 修改`BASE_MODEL_PATH`与`MODEL_PATH`，将内容修改为你的模型文件夹的命名。  
+   - 修改`frontend/FrontEnd.py`文件，将其中`API_BASE`修改为你的`WhiperEnd.py`中暴露的API接口；将其中`TTS_API`修改为你的`CosyVoiceEnd.py`中暴露的API接口。  

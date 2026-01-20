@@ -2,10 +2,10 @@
 一个基于本地大模型的前后端分离的实时语音翻译系统。该系统整合了ASR(自动语音识别)、MT(机器翻译)和TTS(语音合成)三大模块，能够实现低延迟的端到端语音翻译。
 
 ## 主要功能
-- **实时语音识别(ASR)**：基于openai/whisper-large-v3，无需手动触发，录音结束立即开始识别。
-- **高精度翻译(MT)**：基于facebook/nllb-200-distilled-600M，提供精准、快速的翻译。
-- **自克隆语音合成(TTS)**：基于FunAudioLLM/CosyVoice2-0.5B，克隆用户音色，快速语音生成。
-- **前后端分离**：前端使用Streamlit库搭建，后端使用FastAPI搭建，实现全双工实时通信。
+- **实时语音识别(ASR)**：基于`openai/whisper-large-v3`，无需手动触发，录音结束立即开始识别。
+- **高精度翻译(MT)**：基于`facebook/nllb-200-distilled-600M`，提供精准、快速的翻译。
+- **自克隆语音合成(TTS)**：基于`FunAudioLLM/CosyVoice2-0.5B`，克隆用户音色，快速语音生成。
+- **前后端分离**：前端使用`streamlit`搭建，后端使用`FastAPI`搭建，实现全双工实时通信。
 
 ## 目录结构
 ```text
@@ -57,6 +57,21 @@ pip install -r src/frontend/requirements.txt
 (如果有LoRA微调权重，请在asr、mt、tts目录下新建文件夹放置)  
 
 **4. 运行服务**  
-   - 修改backend文件夹下的`WhiperEnd.py`和`CosyVoiceEnd.py`文件，将最后一行`uvicorn.run(app, host="0.0.0.0", port=6006)`中host改为`127.0.0.1`。  
-   - 修改`BASE_MODEL_PATH`与`MODEL_PATH`，将内容修改为你的模型文件夹的命名。  
+   - 修改backend文件夹下的`WhiperEnd.py`和`CosyVoiceEnd.py`文件，将最后一行`uvicorn.run(app, host="0.0.0.0", port=6006)`中host改为`127.0.0.1`；修改`BASE_MODEL_PATH`与`MODEL_PATH`，将内容修改为你的模型文件夹的命名。  
    - 修改`frontend/FrontEnd.py`文件，将其中`API_BASE`修改为你的`WhiperEnd.py`中暴露的API接口；将其中`TTS_API`修改为你的`CosyVoiceEnd.py`中暴露的API接口。  
+
+启动后端：进入backend目录并启动FastAPI服务
+```Bash
+cd src/backend
+
+python WhisperEnd.py
+python CosyVoiceEnd.py
+```  
+启动前端：进入frontend目录并启动streamlit网页
+```Bash
+cd src/frontend
+
+streamlit run FrontEnd.py
+```  
+
+**注意**：每次启动后，需前往侧边栏选择模型后，模型才会加载。
